@@ -35,11 +35,11 @@ class telegraf::install {
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
       }
-      'windows': {
-        # repo is not applicable to windows
+      /windows|FreeBSD/: {
+        # no specific repo needed
       }
       default: {
-        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows are supported at this time')
+        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, FreeBSD and Windows are supported at this time')
       }
     }
   }
