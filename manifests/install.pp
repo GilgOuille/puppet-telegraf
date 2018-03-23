@@ -35,7 +35,7 @@ class telegraf::install {
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
       }
-      'windows': {
+      /windows|FreeBSD/: {
         # repo is not applicable to windows
       }
       default: {
