@@ -11,10 +11,17 @@ class telegraf::params {
     $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
     $logfile              = 'C:/Program Files/telegraf/telegraf.log'
     $manage_repo          = false
-    $service_enable       = true
-    $service_ensure       = running
     $service_hasstatus    = false
     $service_restart      = undef
+  } elif $::osfamily == 'FreeBSD' {
+    $config_file          = '/usr/local/etc/telegraf.conf'
+    $config_file_owner    = 'root'
+    $config_file_group    = 'wheel'
+    $config_folder        = '/usr/local/etc/telegraf'
+    $logfile              = ''
+    $manage_repo          = false
+    $service_hasstatus    = true
+    $service_restart      = 'pkill -HUP telegraf'
   } else {
     $config_file          = '/etc/telegraf/telegraf.conf'
     $config_file_owner    = 'telegraf'
@@ -22,11 +29,11 @@ class telegraf::params {
     $config_folder        = '/etc/telegraf/telegraf.d'
     $logfile              = ''
     $manage_repo          = true
-    $service_enable       = true
-    $service_ensure       = running
     $service_hasstatus    = true
     $service_restart      = 'pkill -HUP telegraf'
   }
+  $service_enable       = true
+  $service_ensure       = running
   $package_name           = 'telegraf'
   $ensure                 = 'present'
   $install_options        = []
