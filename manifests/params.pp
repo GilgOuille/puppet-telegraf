@@ -13,7 +13,7 @@ class telegraf::params {
     $manage_repo          = false
     $service_hasstatus    = false
     $service_restart      = undef
-  } elif $::osfamily == 'FreeBSD' {
+  } elsif $::osfamily == 'FreeBSD' {
     $config_file          = '/usr/local/etc/telegraf.conf'
     $config_file_owner    = 'root'
     $config_file_group    = 'wheel'
