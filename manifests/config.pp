@@ -24,16 +24,6 @@ class telegraf::config inherits telegraf {
       notify  => Class['::telegraf::service'],
       require => Class['::telegraf::install'],
     ;
-    $::telegraf::config_folder:
-      ensure  => directory,
-      owner   => $::telegraf::config_file_owner,
-      group   => $::telegraf::config_file_group,
-      mode    => '0770',
-      purge   => $::telegraf::purge_config_fragments,
-      recurse => true,
-      notify  => Class['::telegraf::service'],
-      require => Class['::telegraf::install'],
-    ;
   }
 
 }
