@@ -7,12 +7,18 @@ class telegraf::service {
   assert_private()
 
   if $::telegraf::manage_service {
+    if $::osfamily == 'FreeBSD' {
+      shellvar { 'telegraf_flags':
+        ensure => present,
+        target => '/etc/rc.conf',
+        value  => $telegraf::service_flags,
+      }
+    } ~>
     service { 'telegraf':
       ensure    => $telegraf::service_ensure,
       hasstatus => $telegraf::service_hasstatus,
       enable    => $telegraf::service_enable,
       restart   => $telegraf::service_restart,
-      flags     => $telegraf::service_flags,
       require   => Class['::telegraf::config'],
     }
   }
