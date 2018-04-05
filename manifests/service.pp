@@ -13,7 +13,7 @@ class telegraf::service {
         target => '/etc/rc.conf',
         value  => $telegraf::service_flags,
       }
-    } ~>
+    } 
     service { 'telegraf':
       ensure    => $telegraf::service_ensure,
       hasstatus => $telegraf::service_hasstatus,
