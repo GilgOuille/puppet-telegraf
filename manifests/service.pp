@@ -12,6 +12,7 @@ class telegraf::service {
       hasstatus => $telegraf::service_hasstatus,
       enable    => $telegraf::service_enable,
       restart   => $telegraf::service_restart,
+      flags     => $telegraf::service_flags,
       require   => Class['::telegraf::config'],
     }
   }

@@ -115,6 +115,7 @@ class telegraf (
   $windows_package_url    = $telegraf::params::windows_package_url,
   $service_enable         = $telegraf::params::service_enable,
   $service_ensure         = $telegraf::params::service_ensure,
+  $service_flags          = $telegraf::params::service_flags,
   $install_options        = $telegraf::params::install_options,
 ) inherits ::telegraf::params
 {
