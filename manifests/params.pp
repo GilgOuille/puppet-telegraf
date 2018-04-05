@@ -23,7 +23,7 @@ class telegraf::params {
     $manage_repo          = false
     $service_hasstatus    = true
     $service_restart      = 'pkill -HUP telegraf'
-    $service_flags        = "--quiet --config-directory ${config_folder}"
+    $service_flags        = "-quiet -config-directory=${config_folder}"
   } else {
     $config_file          = '/etc/telegraf/telegraf.conf'
     $config_file_owner    = 'telegraf'
