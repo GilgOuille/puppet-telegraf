@@ -16,8 +16,8 @@ class telegraf::params {
     $service_flags        = undef
   } elsif $::osfamily == 'FreeBSD' {
     $config_file          = '/usr/local/etc/telegraf.conf'
-    $config_file_owner    = 'root'
-    $config_file_group    = 'wheel'
+    $config_file_owner    = 'telegraf'
+    $config_file_group    = 'telegraf'
     $config_folder        = '/usr/local/etc/telegraf'
     $logfile              = ''
     $manage_repo          = false
