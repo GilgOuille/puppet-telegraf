@@ -90,6 +90,7 @@ class telegraf::install {
           $release = $facts['os']['lsb']['codename']
         }
         apt::source { 'influxdata':
+          ensure   => $telegraf::ensure_status,
           comment  => 'Mirror for InfluxData packages',
           location => "${telegraf::repo_location}${distro}",
           release  => $release,
@@ -99,8 +100,8 @@ class telegraf::install {
             'source' => "${telegraf::repo_location}influxdb.key",
           },
         }
+        Class['apt::update'] -> Package[$telegraf::package_name]
       }
-      Class['apt::update'] -> Package[$telegraf::package_name]
     }
     'RedHat': {
       if $telegraf::manage_repo {
@@ -110,6 +111,7 @@ class telegraf::install {
           $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${telegraf::repo_type}"
         }
         yumrepo { 'influxdata':
+          ensure   => $telegraf::ensure_status,
           name     => 'influxdata',
           descr    => "InfluxData Repository - ${facts['os']['name']} \$releasever",
           enabled  => 1,
@@ -119,9 +121,6 @@ class telegraf::install {
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
       }
-    }
-    /windows|FreeBSD/: {
-    # repo is not applicable to windows
     }
     'Suse': {
       if $telegraf::manage_archive {
@@ -181,7 +180,12 @@ class telegraf::install {
     }
   } else {
     if ! $telegraf::manage_archive {
-      ensure_packages([$telegraf::package_name], { ensure => $telegraf::ensure, install_options => $telegraf::install_options })
+      ensure_packages([$telegraf::package_name],
+        {
+          ensure          => $telegraf::ensure,
+          install_options => $telegraf::install_options,
+        }
+      )
     }
   }
 }
