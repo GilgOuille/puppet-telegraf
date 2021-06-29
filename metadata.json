@@ -1,44 +1,98 @@
 {
-  "name": "datacentred-telegraf",
-  "version": "1.5.0",
-  "author": "DataCentred Ltd",
+  "name": "puppet-telegraf",
+  "version": "4.0.0",
+  "author": "Vox Pupuli",
   "summary": "Configuration and management of InfluxData's Telegraf metrics collection agent",
   "license": "GPL-3.0",
-  "source": "https://github.com/datacentred/puppet-telegraf",
-  "project_page": "https://github.com/datacentred/puppet-telegraf",
-  "issues_url": "https://github.com/datacentred/puppet-telegraf/issues",
-  "tags": ["telegraf","influxdb","influxdata"],
+  "source": "https://github.com/voxpupuli/puppet-telegraf",
+  "project_page": "https://github.com/voxpupuli/puppet-telegraf",
+  "issues_url": "https://github.com/voxpupuli/puppet-telegraf/issues",
+  "tags": [
+    "telegraf",
+    "influxdb",
+    "influxdata"
+  ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "14.04" ]
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Raspbian",
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "8" ]
-    },
-    {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [ "6", "7" ]
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystemrelease": [ "6", "7" ]
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
     },
     {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [ "6", "7" ]
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04",
+        "18.04"
+      ]
     },
     {
       "operatingsystem": "Windows",
-      "operatingsystemrelease": [ "Server 2008", "Server 2008 R2", "Server 2012", "Server 2012 R2" ]
+      "operatingsystemrelease": [
+        "Server 2012",
+        "Server 2012 R2"
+      ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "12"
+      ]
+    },
+    {
+      "operatingsystem": "Darwin",
+      "operatingsystemrelease": [
+        "18"
+      ]
     }
   ],
   "dependencies": [
-    { "name": "puppetlabs-stdlib", "version_requirement": ">=4.10.0 < 5.0.0" },
-    { "name": "puppetlabs-apt", "version_requirement": ">= 2.0.0 < 5.0.0" }
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 5.0.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs-apt",
+      "version_requirement": ">= 2.0.0 < 8.0.0"
+    },
+    {
+      "name": "puppet-archive",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
+    }
   ],
   "requirements": [
-    { "name": "puppet", "version_requirement": "> = 3.0.0 < 5.0.0" }
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.1.0 < 8.0.0"
+    }
   ]
 }

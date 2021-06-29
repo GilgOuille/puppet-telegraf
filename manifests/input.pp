@@ -5,37 +5,17 @@
 # === Parameters
 #
 # [*options*]
-#   Hash. Plugin options for use the the input template.
-#
-# [*single_section*]
-#   Hash. Some inputs take a single unique section in [single brackets].
-#
-# [*sections*]
-#   Hash. Some inputs take multiple sections in [[double brackets]].
+#   List. Plugin options for use in the input template.
 
 define telegraf::input (
-  $plugin_type    = $name,
-  $options        = undef,
-  $single_section = undef,
-  $sections       = undef,
+  String $plugin_type = $name,
+  Array  $options     = [],
 ) {
   include telegraf
 
-  if $options {
-    validate_hash($options)
+  file { "${telegraf::config_folder}/${name}.conf":
+    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'inputs'=>{'${plugin_type}'=>@options}}) %>"),
+    require => Class['telegraf::config'],
+    notify  => Class['telegraf::service'],
   }
-
-  if $single_section {
-    validate_hash($single_section)
-  }
-
-  if $sections {
-    validate_hash($sections)
-  }
-
-  Class['::telegraf::config']
-  -> file {"${telegraf::config_folder}/${name}.conf":
-    content => template('telegraf/input.conf.erb')
-  }
-  ~> Class['::telegraf::service']
 }
