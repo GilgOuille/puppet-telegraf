@@ -119,9 +119,9 @@ class telegraf::install {
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
       }
-      /windows|FreeBSD/: {
-        # repo is not applicable to windows
-      }
+    }
+    /windows|FreeBSD/: {
+    # repo is not applicable to windows
     }
     'Suse': {
       if $telegraf::manage_archive {
